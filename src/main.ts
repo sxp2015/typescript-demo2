@@ -5,8 +5,10 @@ import router from "./router";
 import store from "./store";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
-createApp(App)
-  .use(router)
-  .use(store as any)
-  .use(ElementPlus as any)
-  .mount("#app");
+const app = createApp(App);
+app.use(router);
+app.use(store as any);
+app.use(ElementPlus as any);
+app.mount("#app");
+
+

@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import TestIndexVue from "../views/test/Index.vue";
+import TestHooksVue from "../views/test/test01/TestHooks.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -9,7 +11,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/test",
     name: "test",
-    component: () => import("@/views/test/Test.vue"),
+    component: () => import("@/views/test/Index.vue"),
+  },
+  {
+    path: "/test/hooks",
+    name: "testHooks",
+    component: () => import("@/views/test/test01/TestHooks.vue"),
   },
 ];
 

@@ -11,7 +11,7 @@ export default defineConfig({
       "@": pathResolve("./src"), // 设置 `@` 指向 `src` 目录
     },
     //配置文件扩展名
-    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
+    //extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
   },
   server: {
     port: 5173, // 设置服务启动端口号
