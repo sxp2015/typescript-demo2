@@ -13,12 +13,27 @@
             ><el-button type="primary">立即查看</el-button></router-link
           >
         </el-collapse-item>
+
+        <el-collapse-item title="TestSuspense测试" name="3">
+          <router-link to="/test/suspense"
+            ><el-button type="primary">立即查看</el-button></router-link
+          >
+          <Suspense>
+            <template #default>
+              <TestSuspenseVue />
+            </template>
+            <template #fallback>
+              <h3>加载中....</h3>
+            </template>
+          </Suspense>
+        </el-collapse-item>
       </el-collapse>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import TestSuspenseVue from "./test01/TestSuspense.vue";
 import { ref } from "vue";
 
 const activeName = ref("1");

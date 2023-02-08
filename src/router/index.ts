@@ -22,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "testTeleport",
     component: () => import("@/views/test/test01/TestDefineComponent.vue"),
   },
+  {
+    path: "/test/suspense",
+    name: "testSuspense",
+    component: () => import("@/views/test/test01/TestSuspense.vue"),
+  },
 ];
 
 const router = createRouter({
