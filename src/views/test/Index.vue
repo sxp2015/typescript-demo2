@@ -8,8 +8,8 @@
           >
         </el-collapse-item>
 
-        <el-collapse-item title="测试模块化响应式 Reactive" name="2">
-          <router-link to="/test/hooks"
+        <el-collapse-item title="Teleport测试" name="2">
+          <router-link to="/test/teleport"
             ><el-button type="primary">立即查看</el-button></router-link
           >
         </el-collapse-item>
