@@ -1,32 +1,35 @@
 <template>
-    <div>
-        <ul v-for="column in list" :key="column.id">
-            <li>
-                <img :src="column.avatar" :alt="column.title">
-                <h5>{{ column.title }}</h5>
-                <p>
-                    {{ column.description }}
-                </p>
-                <a href="#">进入专栏</a>
-            </li>
-        </ul>
+  <div class="row">
+    <div v-for="column in list" :key="column.id" class="col-4 mb-4">
+      <div class="card h-100  shadow-sm" style="width: 23rem">
+        <div class="card-body text-center">
+          <img
+            :src="column.avatar"
+            class="card-img-top rounded-circle border border-light w-25"
+            :alt="column.title"
+          />
+          <h5 class="card-title">{{ column.title }}</h5>
+          <p class="card-text text-left">{{ column.description }}</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">项目一</li>
+          </ul>
+          <a href="#" class="btn btn-outline-primary">进入专栏</a>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {defineProps,reactive,toRefs,PropType} from 'vue'
-import { IColumnProps } from '../types/columnList';
+import { defineProps, reactive, toRefs, PropType } from "vue";
+import { IColumnProps } from "../types/columnList";
 
-const ColumnProps =  defineProps({
-    list: {
-        type: Array as PropType<IColumnProps[]>,
-        required: true,
-    }
-})
-
-
+const ColumnProps = defineProps({
+  list: {
+    type: Array as PropType<IColumnProps[]>,
+    required: true,
+  },
+});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import ColumnListVue from "../../components/ColumnList.vue";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import { IColumnProps } from "../../types/columnList";
 
 const testData: IColumnProps[] = [
@@ -15,14 +15,28 @@ const testData: IColumnProps[] = [
     title: "测试标题数据1",
     description: "测试描述方面的内容1，需要多一点文本，才能测试出效果",
     avatar:
-      "https://dog.ceo/img/dog-api-logo.svg",
+      "https://t3.lw05.cn/static/images/index/logo.png",
   },
   {
     id: 2,
     title: "测试标题数据2",
     description: "测试描述方面的内容2，需要多一点文本，才能测试出效果",
     avatar:
-      "https://dog.ceo/img/dog-api-logo.svg",
+      "https://t3.lw05.cn/static/images/index/logo.png",
+  },
+  {
+    id: 3,
+    title: "测试标题数据3",
+    description: "测试描述方面的内容3，需要多一点文本，才能测试出效果",
+    avatar:
+      "https://t3.lw05.cn/static/images/index/logo.png",
+  },
+  {
+    id: 4,
+    title: "测试标题数据4",
+    description: "测试描述方面的内容4，需要多一点文本，才能测试出效果",
+    avatar:
+      "https://t3.lw05.cn/static/images/index/logo.png",
   },
 ];
 
