@@ -20,6 +20,9 @@
     />
 
     <TestDefineComponent :is-open="modalIsOpen" @close-modal="onModalCloseClick"></TestDefineComponent>
+  
+  <h1>测试异步加载组件</h1>
+
   </div>
 </template>
 
@@ -57,6 +60,8 @@ const {
   loadding,
   loaded,
 } = useURLLoaderByRef<DogResult>(dog_url);
+
+
 const { result: cat_result } = useURLLoaderByRef<CatResult[]>(cat_url);
 
 watch(
@@ -80,6 +85,8 @@ const openModal = () => { modalIsOpen.value = true }
 const onModalCloseClick = () => {
   modalIsOpen.value=false
 }
+
+
 </script>
 
 <style scoped>
