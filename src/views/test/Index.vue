@@ -16,18 +16,25 @@
 
         <el-collapse-item title="TestSuspense测试" name="3">
           <router-link to="/test/suspense"
-            ><el-button type="primary">立即查看</el-button></router-link
+            ><el-button type="primary">立即跳转</el-button></router-link
           >
           <Suspense>
+
             <template #default>
               <TestSuspenseVue />
             </template>
+
             <template #fallback>
-              <h3>加载中....</h3>
+              <h3>加载中....加载中....加载中....加载中....加载中....加载中....加载中....加载中....加载中....加载中....加载中....</h3>
             </template>
           </Suspense>
+       
+
         </el-collapse-item>
       </el-collapse>
+      <p>
+           
+      </p>
     </div>
   </div>
 </template>
