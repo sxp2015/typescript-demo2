@@ -1,14 +1,21 @@
 <template>
   <div class="container">
+    <GlobalUserPropsVue :user="testUserProps"></GlobalUserPropsVue>
     <ColumnListVue :list="testData"></ColumnListVue>
   </div>
 </template>
 
 <script setup lang="ts">
 import ColumnListVue from "../../components/ColumnList.vue";
-
+import GlobalUserPropsVue from "../../components/GlobalUserProps.vue";
 import { IColumnProps } from "../../types/columnList";
+import { IUserProps } from "../../types/userProps";
 
+const testUserProps: IUserProps = {
+  isLogin: true,
+  userName: 'Sunny',
+  userID: 5709
+}
 const testData: IColumnProps[] = [
   {
     id: 1,

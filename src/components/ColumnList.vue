@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div v-for="column in list" :key="column.id" class="col-4 mb-4">
+    <div v-for="column in list" :key="column.id" class="col-4 mb-3">
       <div class="card h-100  shadow-sm" style="width: 23rem">
         <div class="card-body text-center">
           <img
@@ -13,7 +13,7 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item">项目一</li>
           </ul>
-          <a href="#" class="btn btn-outline-primary">进入专栏</a>
+          <a href="#" class="btn btn-outline-success text-decoration-none text-bg-success" >进入专栏</a>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, reactive, toRefs, PropType } from "vue";
+import { defineProps, reactive, toRefs, PropType} from "vue";
 import { IColumnProps } from "../types/columnList";
 
 const ColumnProps = defineProps({
