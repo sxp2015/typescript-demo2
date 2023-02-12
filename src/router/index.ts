@@ -8,6 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/home/Index.vue"), // 建议进行路由懒加载，优化访问性能
   },
   {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/login/Index.vue"),
+  },
+  {
     path: "/test",
     name: "test",
     component: () => import("@/views/test/Index.vue"),
