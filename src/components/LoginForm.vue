@@ -8,19 +8,16 @@
           <form>
             <div class="mb-3">
               <label class="form-label">邮箱地址：</label>
-              <ValidateInput :rules="emailRules" v-model="testInputValue" ></ValidateInput>
-            {{ testInputValue }}
+              <ValidateInput :rules="emailRules" v-model="emailValue" placeholder="请输入邮箱地址"></ValidateInput>
+            {{ emailValue }}
             </div>
 
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label"
                 >登陆密码：</label
               >
-              <input
-                type="password"
-                class="form-control"
-                id="exampleInputPassword1"
-              />
+              <ValidateInput type="password" placeholder="至少6个字符,至少1个字母和1个数字" :rules="passwordRules" v-model="passwordValue"></ValidateInput>
+
             </div>
             <div class="mb-3 form-check">
               <input
@@ -42,14 +39,23 @@
 </template>
 
 <script setup lang="ts">
-import { EmailRuleProps } from "../types/userProps";
+import { EmailRuleProps,PasswordRuleProps } from "../types/userProps";
 import ValidateInput from "./ValidateInput.vue";
-import {ref} from 'vue'
-const testInputValue = ref('adf@qq.com')
+import { ref } from 'vue'
+
+const emailValue = ref('')
+const passwordValue = ref('')
+
 const emailRules: EmailRuleProps[] = [
   { type: "required", message: "邮箱地址不能为空" },
   { type: "email", message: "邮箱格式不正确" },
 ];
+
+const passwordRules: PasswordRuleProps[] = [
+  { type: "required", message: "密码不能为空" },
+  { type: "password", message: "密码输入不符合要求" },
+];
+
 </script>
 
 <style scoped>
