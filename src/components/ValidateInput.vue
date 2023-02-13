@@ -7,6 +7,7 @@
       :value="InputRef.val"
       @input="updateValue"
       @blur="validateInput"
+      v-bind="$attrs"
     />
 
     <span v-if="InputRef.error" class="invalid-feedback">{{
@@ -16,33 +17,46 @@
 </template>
 
 <script setup lang="ts">
-import { EmailRuleProps, IEmail } from "../types/userProps";
+import {
+  EmailRuleProps,
+  IEmail,
+  IPassword,
+  PasswordRuleProps,
+} from "../types/userProps";
 import { PropType, toRefs, reactive, ref, watch } from "vue";
-import { tabBarProps } from "element-plus";
 
+//邮箱正则表达式
 const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-type RuleProps = EmailRuleProps[];
 
-const props = defineProps({
+//密码正则表达式至少六个字符，至少一个字母和一个数字
+const passwrodReg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+type EmailProps = EmailRuleProps[];
+type PasswordProps = PasswordRuleProps[];
+
+const emailProps = defineProps({
   rules: {
-    type: Array as PropType<RuleProps>,
+    type: Array as PropType<EmailProps>,
   },
   modelValue: {
     type: String,
   },
 });
 
+
 const InputRef: IEmail = reactive({
-  val: props.modelValue || "",
+  val: emailProps.modelValue || "",
   error: false,
   message: "",
 });
 
+
 const InputRefs = toRefs(InputRef);
 
+
 const validateInput = () => {
-  if (props.rules) {
-    const allPassed = props.rules.every((rule) => {
+  if (emailProps.rules) {
+    const allPassed = emailProps.rules.every((rule) => {
       let passed = true; //临时变量
       InputRef.message = rule.message; //把错误消息重赋值
       switch (rule.type) {
@@ -53,6 +67,10 @@ const validateInput = () => {
         case "email":
           passed = emailReg.test(InputRef.val);
           break;
+
+        case "password":
+          passed = passwrodReg.test(InputRef.val);
+          break;
         default:
           break;
       }
@@ -61,9 +79,10 @@ const validateInput = () => {
     InputRef.error = !allPassed;
   }
 };
+
 const emit = defineEmits(["update:modelValue"]);
 
-const updateValue = (e: KeyboardEvent) => {
+const updateValue = (e: Event) => {
   // 定义输入的值
   const targetValue = (e.target as HTMLInputElement).value;
   //赋值
