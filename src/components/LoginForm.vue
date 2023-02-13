@@ -5,10 +5,11 @@
         <div class="col"></div>
         <div class="col">
           <h2 class="text-center fw-bold">后台登陆</h2>
-          <form>
+          <ValidateForm @form-submit="onFormSubmit">
             <div class="mb-3">
               <label class="form-label">邮箱地址：</label>
-              <ValidateInput :rules="emailRules" v-model="emailValue" placeholder="请输入邮箱地址"></ValidateInput>
+              <ValidateInput :rules="emailRules" v-model="emailValue" placeholder="请输入邮箱地址" ref="inputRef">
+              </ValidateInput>
             {{ emailValue }}
             </div>
 
@@ -16,7 +17,7 @@
               <label for="exampleInputPassword1" class="form-label"
                 >登陆密码：</label
               >
-              <ValidateInput type="password" placeholder="至少6个字符,至少1个字母和1个数字" :rules="passwordRules" v-model="passwordValue"></ValidateInput>
+              <ValidateInput type="password" placeholder="至少6个字符,至少1个字母和1个数字" :rules="passwordRules" v-model="passwordValue" ></ValidateInput>
 
             </div>
             <div class="mb-3 form-check">
@@ -27,10 +28,15 @@
               />
               <label class="form-check-label" for="exampleCheck1">记住我</label>
             </div>
-            <div class="d-grid gap-2">
+            <!-- <div class="d-grid gap-2">
               <button type="submit" class="btn btn-primary">提交</button>
-            </div>
-          </form>
+            </div> -->
+            
+              <template #submit>
+                <button class="btn btn-danger">提交</button>
+              </template>
+          
+          </ValidateForm>
         </div>
         <div class="col"></div>
       </div>
@@ -41,10 +47,12 @@
 <script setup lang="ts">
 import { EmailRuleProps,PasswordRuleProps } from "../types/userProps";
 import ValidateInput from "./ValidateInput.vue";
+import ValidateForm from "./ValidateForm.vue";
 import { ref } from 'vue'
 
-const emailValue = ref('')
-const passwordValue = ref('')
+const emailValue = ref('abc@qq.com')
+const passwordValue = ref('abc123')
+const inputRef = ref<any>()
 
 const emailRules: EmailRuleProps[] = [
   { type: "required", message: "邮箱地址不能为空" },
@@ -55,6 +63,11 @@ const passwordRules: PasswordRuleProps[] = [
   { type: "required", message: "密码不能为空" },
   { type: "password", message: "密码输入不符合要求" },
 ];
+
+const onFormSubmit = (result: boolean) => {
+  console.log('inputRef...',inputRef.value)
+  console.log("onFormSubmit...父组件收到的内容是：", result)
+}
 
 </script>
 

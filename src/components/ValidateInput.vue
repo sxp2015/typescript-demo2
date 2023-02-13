@@ -17,13 +17,13 @@
 </template>
 
 <script setup lang="ts">
+// 导入事件监听器
 import {
   EmailRuleProps,
   IEmail,
-  IPassword,
-  PasswordRuleProps,
 } from "../types/userProps";
-import { PropType, toRefs, reactive, ref, watch } from "vue";
+import { PropType, toRefs, reactive, ref, watch,onMounted } from "vue";
+import emitter from './ValidateForm.vue'
 
 //邮箱正则表达式
 const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
@@ -32,7 +32,6 @@ const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 const passwrodReg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
 type EmailProps = EmailRuleProps[];
-type PasswordProps = PasswordRuleProps[];
 
 const emailProps = defineProps({
   rules: {
@@ -77,7 +76,9 @@ const validateInput = () => {
       return passed;
     });
     InputRef.error = !allPassed;
+    return allPassed;
   }
+  return true;
 };
 
 const emit = defineEmits(["update:modelValue"]);
@@ -91,6 +92,10 @@ const updateValue = (e: Event) => {
   //发送事件
   emit("update:modelValue", targetValue);
 };
+
+onMounted(() => {
+  emitter.emits('form-submit',InputRef.val)
+})
 </script>
 
 <style scoped></style>
