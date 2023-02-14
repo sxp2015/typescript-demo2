@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import { IUserProps } from "../types/userProps";
-import { defineProps, PropType, ref } from "vue";
+import {  PropType, ref } from "vue";
 import DropDown from "./DropDown.vue";
 
 

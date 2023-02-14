@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, reactive, toRefs, PropType} from "vue";
+import {  reactive, toRefs, PropType} from "vue";
 import { IColumnProps } from "../types/columnList";
 
 const ColumnProps = defineProps({

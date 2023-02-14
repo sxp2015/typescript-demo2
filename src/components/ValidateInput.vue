@@ -18,12 +18,23 @@
 
 <script setup lang="ts">
 // 导入事件监听器
-import {
-  EmailRuleProps,
-  IEmail,
-} from "../types/userProps";
-import { PropType, toRefs, reactive, ref, watch,onMounted } from "vue";
-import emitter from './ValidateForm.vue'
+import { EmailRuleProps, IEmail } from "../types/userProps";
+import { PropType, toRefs, reactive, ref, watch, onMounted } from "vue";
+import mitt from "mitt";
+
+type Events = {
+  formItemCreated: string;
+  callback?: ()=>boolean;
+};
+
+const emitter = mitt<Events>();
+// import mitt from "mitt";
+
+// type Events = {
+//   formSubmit: string;
+//   callback?: Array<boolean>;
+// };
+// const emitter = mitt<Events>();
 
 //邮箱正则表达式
 const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
@@ -42,7 +53,6 @@ const emailProps = defineProps({
   },
 });
 
-
 const InputRef: IEmail = reactive({
   val: emailProps.modelValue || "",
   error: false,
@@ -50,13 +60,10 @@ const InputRef: IEmail = reactive({
 });
 
 
-const InputRefs = toRefs(InputRef);
-
-
 const validateInput = () => {
   if (emailProps.rules) {
     const allPassed = emailProps.rules.every((rule) => {
-      let passed = true; //临时变量
+      let passed = null; //临时变量
       InputRef.message = rule.message; //把错误消息重赋值
       switch (rule.type) {
         case "required":
@@ -64,11 +71,11 @@ const validateInput = () => {
           break;
 
         case "email":
-          passed = emailReg.test(InputRef.val);
+          passed = emailReg.test(InputRef.val.trim());
           break;
 
         case "password":
-          passed = passwrodReg.test(InputRef.val);
+          passed = passwrodReg.test(InputRef.val.trim());
           break;
         default:
           break;
@@ -78,7 +85,7 @@ const validateInput = () => {
     InputRef.error = !allPassed;
     return allPassed;
   }
-  return true;
+  
 };
 
 const emit = defineEmits(["update:modelValue"]);
@@ -94,8 +101,8 @@ const updateValue = (e: Event) => {
 };
 
 onMounted(() => {
-  emitter.emits('form-submit',InputRef.val)
-})
+  emitter.emit("formItemCreated", InputRef.val);
+});
 </script>
 
 <style scoped></style>

@@ -5,7 +5,7 @@
         <div class="col"></div>
         <div class="col">
           <h2 class="text-center fw-bold">后台登陆</h2>
-          <ValidateForm @form-submit="onFormSubmit">
+          <ValidateForm @formSubmit="onFormSubmit">
             <div class="mb-3">
               <label class="form-label">邮箱地址：</label>
               <ValidateInput :rules="emailRules" v-model="emailValue" placeholder="请输入邮箱地址" ref="inputRef">
@@ -50,8 +50,8 @@ import ValidateInput from "./ValidateInput.vue";
 import ValidateForm from "./ValidateForm.vue";
 import { ref } from 'vue'
 
-const emailValue = ref('abc@qq.com')
-const passwordValue = ref('abc123')
+const emailValue = ref('')
+const passwordValue = ref('')
 const inputRef = ref<any>()
 
 const emailRules: EmailRuleProps[] = [
