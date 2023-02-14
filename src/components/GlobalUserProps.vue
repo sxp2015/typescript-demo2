@@ -11,16 +11,15 @@
         height="30"
       /><span class="fs-6 mx-2">Greensward</span></a
     >
-
-    <ul v-if="!user.isLogin" class="list-inline mb-0">
+    <ul  class="list-inline mb-0">
       <li class="list-inline-item">
-        <a href="#" class="btn btn-outline-light">注册</a>
+        <router-link href="/login" class="btn btn-outline-light">注册</router-link>
       </li>
       <li class="list-inline-item">
-        <a href="#" class="btn btn-outline-light">登陆</a>
+        <router-link href="/login" class="btn btn-outline-light">登陆</router-link>
       </li>
     </ul>
-    <ul v-else class="list-inline mb-0">
+    <ul  class="list-inline mb-0">
       <li class="list-inline-item">
         <!-- <a href="#" class="btn btn-outline-light">你好: {{ user.userName }}</a> -->
         <!-- <div class="dropdown">

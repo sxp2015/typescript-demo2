@@ -11,8 +11,8 @@
     </button>
 
     <ul class="dropdown-menu" :style="{ display: 'block' }" v-if="isOpen">
-      <li><a class="dropdown-item" href="#">账号设置</a></li>
-      <li><a class="dropdown-item" href="#">个人中心</a></li>
+      <li><a class="dropdown-item" href="#">新建文章</a></li>
+      <li><a class="dropdown-item" href="#">编辑资料</a></li>
       <li><a class="dropdown-item" href="#">退出登陆</a></li>
     </ul>
   </div>
