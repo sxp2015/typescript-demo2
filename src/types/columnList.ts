@@ -1,6 +1,6 @@
 export interface IColumnProps {
   id: number;
-  avatar: string;
+  avatar?: string;
   title: string;
   description: string;
 }

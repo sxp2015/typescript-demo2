@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
   <nav
     class="navbar navbar-dark justify-content-between mb-4 px-4 navbar-expand-lg bg-body-tertiary"
     style="background-color: #087360"
@@ -26,6 +27,7 @@
       </li>
     </ul>
   </nav>
+  </div>
 </template>
 
 <script setup lang="ts">
