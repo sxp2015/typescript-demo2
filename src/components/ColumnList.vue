@@ -13,7 +13,9 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item">项目一</li>
           </ul>
-          <a href="#" class="btn btn-outline-success text-decoration-none text-bg-success" >进入专栏</a>
+          <!--路由写法一-->
+          <router-link :to="{name:'columnDetail',params:{id:column.id}}" class="btn btn-outline-success text-decoration-none text-bg-success" >进入专栏（一）</router-link>
+          <router-link :to="`/column/${column.id}`" class="btn btn-outline-success text-decoration-none text-bg-success" >进入专栏（二）</router-link>
         </div>
       </div>
     </div>
@@ -24,12 +26,15 @@
 import {  reactive, toRefs, PropType} from "vue";
 import { IColumnProps } from "../types/columnList";
 
+
 const ColumnProps = defineProps({
   list: {
     type: Array as PropType<IColumnProps[]>,
     required: true,
   },
 });
+
+
 </script>
 
 <style scoped></style>

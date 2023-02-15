@@ -58,4 +58,8 @@ const submitForm = () => {
 defineExpose({ emitter });
 </script>
 
-<style scoped></style>
+<style scoped>
+button[type='submit']{
+  background-color: #087360;
+}
+</style>

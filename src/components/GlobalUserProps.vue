@@ -19,10 +19,10 @@
     </ul>
     <ul v-else class="list-inline mb-0">
       <li class="list-inline-item">
-        <a href="/login" class="btn btn-outline-light">注册</a>
+        <router-link to="/login" class="btn btn-outline-light">注册</router-link>
       </li>
       <li class="list-inline-item">
-        <a href="/login" class="btn btn-outline-light">登陆</a>
+        <router-link to="/login" class="btn btn-outline-light">登陆</router-link>
       </li>
     </ul>
   </nav>

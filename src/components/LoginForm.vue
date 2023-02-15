@@ -32,9 +32,7 @@
               <button type="submit" class="btn btn-primary">提交</button>
             </div> -->
             
-              <template #submit>
-                <button class="btn btn-danger">提交</button>
-              </template>
+            
           
           </ValidateForm>
         </div>
