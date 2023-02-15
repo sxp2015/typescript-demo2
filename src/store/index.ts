@@ -1,18 +1,13 @@
 import { createStore } from "vuex";
+import { testData, testPost } from "../types/testData";
+import { GlobalDataProps } from "../types/globalDatas";
 
-const defaultState = {
-  count: 0,
-};
-const store = createStore({
-  state() {
-    return {
-      count: 0,
-    };
+const store = createStore<GlobalDataProps>({
+  state: {
+    columns: testData,
+    posts: testPost,
+    users: { isLogin: false },
   },
-  mutations: {
-    increment(state: typeof defaultState) {
-      state.count++;
-    },
-  },
+  mutations: {},
 });
 export default store;
