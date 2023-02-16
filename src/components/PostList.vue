@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { PropType } from "vue";
-import { PostProps } from "../types/testData";
+import { PostProps } from "../types/globalDatas";
 const PostList = defineProps({
   list: {
     type: Array as PropType<PostProps[]>,

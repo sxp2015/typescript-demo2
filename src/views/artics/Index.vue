@@ -6,13 +6,13 @@
 </template>
 
 <script setup lang="ts">
-import {testData,testPost } from '../../types/testData'
-import { IUserProps } from '../../types/userProps';
+import {testData} from '../../types/testData'
+import { UserProps } from '../../types/globalDatas';
 import GlobalHead from '../../components/GlobalUserProps.vue';
 import ColumnList from '../../components/ColumnList.vue';
 import {reactive} from 'vue'
 
-const testUserProps: IUserProps = reactive({
+const testUserProps: UserProps = reactive({
   isLogin: false,
   userName: 'Sunny',
   userID: 5709

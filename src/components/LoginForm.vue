@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { RuleProps, PasswordRuleProps } from "../types/userProps";
+import { RuleProps, PasswordRuleProps } from "../types/globalDatas";
 import ValidateInput from "./ValidateInput.vue";
 import ValidateForm from "./ValidateForm.vue";
 import { ref } from "vue";

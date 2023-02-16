@@ -6,16 +6,16 @@
 </template>
 
 <script setup lang="ts">
-import { GlobalDataProps } from "../../types/globalDatas";
+
 import ColumnList from "../../components/ColumnList.vue";
 import GlobalHead from "../../components/GlobalUserProps.vue";
-import { IUserProps } from "../../types/userProps";
+import { UserProps } from "../../types/globalDatas";
 import {reactive,toRefs,computed} from  'vue'
 import store from "../../store";
-import router from "../../router";
+
 
 const list = computed(() => store.state.columns)
-const UserProps: IUserProps = reactive({
+const UserProps: UserProps = reactive({
   isLogin: store.state.user.isLogin,
   userName: store.state.user.userName,
   userID: store.state.user.userID
