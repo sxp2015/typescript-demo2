@@ -11,7 +11,12 @@ const store = createStore<GlobalDataProps>({
   mutations: {
     login(state) {
       //拿出并解构仓库数据，重新赋值
-      state.user = { ...state.user, isLogin: true, userName: "登陆成功的用户" };
+      state.user = {
+        ...state.user,
+        isLogin: true,
+        userName: "Sunny Sun",
+        columnId: 1,
+      };
     },
   },
   getters: {

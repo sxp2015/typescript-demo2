@@ -18,6 +18,7 @@ export interface UserProps {
   isLogin: boolean;
   userName?: string;
   userID?: number;
+  columnId?: number;
 }
 
 export interface GlobalDataProps {

@@ -33,13 +33,13 @@
 </template>
 
 <script setup lang="ts">
-import { IUserProps } from "../types/userProps";
+import { UserProps } from "../types/globalDatas";
 import { PropType, ref } from "vue";
 import DropDown from "./DropDown.vue";
 
 const userProps = defineProps({
   user: {
-    type: Object as PropType<IUserProps>,
+    type: Object as PropType<UserProps>,
     required: true,
   },
 });

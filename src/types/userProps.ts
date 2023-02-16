@@ -4,12 +4,6 @@ interface Base {
   message: string;
 }
 
-export interface IUserProps {
-  isLogin: boolean;
-  userName?: string;
-  userID?: number;
-}
-
 export interface IEmail extends Base {}
 export interface IPassword extends Base {}
 
