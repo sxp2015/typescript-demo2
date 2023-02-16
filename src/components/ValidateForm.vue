@@ -13,34 +13,29 @@
 
 <script setup lang="ts">
 import { onUnmounted, onMounted, toRefs } from "vue";
-import mitt from "mitt";
+import emitter from "../utils/emitter";
 
-type Events = {
-  formItemCreated: Array<boolean>;
-  callback?: () => boolean;
-};
+// inferred as Emitter<Events>
 
-const emitter = mitt<Events>(); // inferred as Emitter<Events>
-
-type ValidateFunc = () => boolean;
+type ValidateFunc = () => boolean | undefined;
 //导出创建的监听器给子组件使用
 const emit = defineEmits(["formSubmit"]);
 
 let funcArr: ValidateFunc[] = [];
 //emitter.on('formItemCreated', (e) => {}); // 'e' has inferred type 'string'
 //导入事件监听器
-const callback = (func?: ValidateFunc) => {
+const callback = (func?: ValidateFunc): void => {
   if (func) {
-     funcArr.push(func);
+    funcArr.push(func);
   }
 };
 
-emitter.on("formItemCreated", (callback) =>callback);
+emitter.on('formcreatedItem', val=> callback(val) );
 
 //添加到监听器中
 
 onUnmounted(() => {
-  emitter.off("formItemCreated", (callback) => callback);
+  emitter.off("formcreatedItem");
   funcArr = [];
 });
 
@@ -49,17 +44,18 @@ onUnmounted(() => {
 //定义函数触发自定义事件
 const submitForm = () => {
   //const result = funcArr.every(res => res());
-  const result = funcArr.map((func) => func()).every(res => res);
-  console.log("result===",result)
+  const result = funcArr.map((func) => func()).every((res) => res);
+  console.log("funcArr==", funcArr);
+  console.log("result===", result);
   emit("formSubmit", result);
 };
 //创建一个函数发送测试数据
 
-defineExpose({ emitter });
+
 </script>
 
 <style scoped>
-button[type='submit']{
+button[type="submit"] {
   background-color: #087360;
 }
 </style>

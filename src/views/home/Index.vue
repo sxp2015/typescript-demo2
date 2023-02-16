@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <global-head :user="testUserProps"> ></global-head>
+    <global-head :user="UserProps"> ></global-head>
     <column-list :list="list"></column-list>
   </div>
 </template>
@@ -12,15 +12,16 @@ import GlobalHead from "../../components/GlobalUserProps.vue";
 import { IUserProps } from "../../types/userProps";
 import {reactive,toRefs,computed} from  'vue'
 import store from "../../store";
+import router from "../../router";
 
 const list = computed(() => store.state.columns)
-const testUserProps: IUserProps = reactive({
-  isLogin: false,
-  userName: 'Sunny',
-  userID: 5709
+const UserProps: IUserProps = reactive({
+  isLogin: store.state.user.isLogin,
+  userName: store.state.user.userName,
+  userID: store.state.user.userID
 })
 
-const userPropsRef = toRefs(testUserProps)
+const userPropsRef = toRefs(UserProps)
 
 
 </script>

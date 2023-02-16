@@ -20,14 +20,16 @@
 // 导入事件监听器
 import { EmailRuleProps, IEmail } from "../types/userProps";
 import { PropType, toRefs, reactive, ref, watch, onMounted } from "vue";
-import mitt from "mitt";
+import emitter from "../utils/emitter";
 
-type Events = {
-  formItemCreated: string;
-  callback?: ()=>boolean;
-};
 
-const emitter = mitt<Events>();
+
+// type Events = {
+//   formItemCreated: string;
+//   callback?: boolean;
+// };
+
+//const emitter = mitt<any>();
 // import mitt from "mitt";
 
 // type Events = {
@@ -85,7 +87,7 @@ const validateInput = () => {
     InputRef.error = !allPassed;
     return allPassed;
   }
-  
+  return true
 };
 
 const emit = defineEmits(["update:modelValue"]);
@@ -96,12 +98,14 @@ const updateValue = (e: Event) => {
   //赋值
   InputRef.val = targetValue;
 
+  console.log('InputRef.val=',InputRef.val)
+
   //发送事件
   emit("update:modelValue", targetValue);
 };
 
 onMounted(() => {
-  emitter.emit("formItemCreated", InputRef.val);
+ emitter.emit('formcreatedItem',validateInput)
 });
 </script>
 

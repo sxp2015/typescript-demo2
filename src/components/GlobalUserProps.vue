@@ -8,10 +8,12 @@
       <img
         src="https://t3.lw05.cn/static/images/index/logo.png"
         alt="Greensward"
-        width="30"
-        height="30"
+        width="50"
+        height="50"
       /><span class="fs-6 mx-2">Greensward</span></a
     >
+
+    <h4>郴州建活塑胶科技有限公司</h4>
 
     <ul v-if="user.isLogin" class="list-inline mb-0">
       <li class="list-inline-item">
@@ -45,4 +47,8 @@ const userProps = defineProps({
 const title = `你好 ${userProps.user.userName}`;
 </script>
 
-<style scoped></style>
+<style scoped>
+h4{
+  color: aliceblue;
+}
+</style>

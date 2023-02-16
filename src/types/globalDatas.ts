@@ -23,5 +23,5 @@ export interface UserProps {
 export interface GlobalDataProps {
   columns: ColumnProps[];
   posts: PostProps[];
-  users: UserProps;
+  user: UserProps;
 }

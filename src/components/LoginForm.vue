@@ -47,6 +47,8 @@ import { EmailRuleProps,PasswordRuleProps } from "../types/userProps";
 import ValidateInput from "./ValidateInput.vue";
 import ValidateForm from "./ValidateForm.vue";
 import { ref } from 'vue'
+import router from "../router";
+import store from "../store";
 
 const emailValue = ref('')
 const passwordValue = ref('')
@@ -63,6 +65,10 @@ const passwordRules: PasswordRuleProps[] = [
 ];
 
 const onFormSubmit = (result: boolean) => {
+  if (result) {
+    router.push('/')
+    store.commit('login')
+  }
   console.log('inputRef...',inputRef.value)
   console.log("onFormSubmit...父组件收到的内容是：", result)
 }

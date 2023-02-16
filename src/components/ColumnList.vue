@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="row">
-      <div v-for="column in list" :key="column.id" class="col-4 mb-3">
-        <div class="card h-100 shadow-sm" style="width: 23rem">
+      <div v-for="column in list" :key="column.id" class="col-4 mb-4">
+        <div class="card h-100 shadow-sm" style="width: 21.8rem">
           <div class="card-body text-center">
             <img
               :src="column.avatar"
