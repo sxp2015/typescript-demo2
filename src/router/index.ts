@@ -18,6 +18,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/artics/Index.vue"),
   },
   {
+    path: "/create",
+    name: "create",
+    component: () => import("@/views/artics/create.vue"),
+  },
+  {
     path: "/column/:id",
     name: "columnDetail",
     component: () => import("@/components/ColumnDetail.vue"),

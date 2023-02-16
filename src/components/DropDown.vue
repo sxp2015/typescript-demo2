@@ -11,7 +11,7 @@
     </button>
 
     <ul class="dropdown-menu" :style="{ display: 'block' }" v-if="isOpen">
-      <li><a class="dropdown-item" href="#">新建文章</a></li>
+      <li><router-link class="dropdown-item" :to="{name:'create'}">新建文章</router-link></li>
       <li><a class="dropdown-item" href="#">编辑资料</a></li>
       <li><a class="dropdown-item" href="#">退出登陆</a></li>
     </ul>
@@ -19,8 +19,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch,computed } from "vue";
 import { useClickOutSide } from "../hooks/useClickOutSide";
+import store from "../store";
+const userInfo = computed(()=>store.state.user )
 const isOpen = ref(false);
 
 const toggleOpen = () => {

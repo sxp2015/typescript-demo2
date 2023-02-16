@@ -32,15 +32,17 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import PostList from "./PostList.vue";
-import { testData, testPost, ColumnProps, PostProps } from "../types/testData";
-import { reactive, toRefs, ref } from "vue";
+
+import { computed } from "vue";
+import store from "../store";
+import { getColumnById } from "element-plus/es/components/table/src/util";
 const route = useRoute();
 const currentId = +route.params.id; // + 符号是为了让字符串变数字类型，好在下面比较
 //拿到用户点击的专栏
-const column = testData.find((c) => c.id === currentId);
+const column = computed(()=>store.getters.getColumnById(currentId)) 
 
 //过滤出，用户点击的文章所属的专栏
-const list = testPost.filter((post) => post.columnId === currentId);
+const list = computed(()=>store.getters.getPostByCid(currentId)) 
 </script>
 
 <style scoped></style>

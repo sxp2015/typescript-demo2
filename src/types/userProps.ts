@@ -12,7 +12,8 @@ export interface IUserProps {
 
 export interface IEmail extends Base {}
 export interface IPassword extends Base {}
-export interface EmailRuleProps {
+
+export interface RuleProps {
   type: "required" | "email" | "password";
   message: string;
 }

@@ -30,7 +30,7 @@ const callback = (func?: ValidateFunc): void => {
   }
 };
 
-emitter.on('formcreatedItem', val=> callback(val) );
+emitter.on("formcreatedItem", (val) => callback(val));
 
 //添加到监听器中
 
@@ -45,13 +45,11 @@ onUnmounted(() => {
 const submitForm = () => {
   //const result = funcArr.every(res => res());
   const result = funcArr.map((func) => func()).every((res) => res);
-  console.log("funcArr==", funcArr);
-  console.log("result===", result);
+  // console.log("funcArr==", funcArr);
+  // console.log("result===", result);
   emit("formSubmit", result);
 };
 //创建一个函数发送测试数据
-
-
 </script>
 
 <style scoped>

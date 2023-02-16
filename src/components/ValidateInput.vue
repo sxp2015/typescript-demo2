@@ -1,6 +1,18 @@
 <template>
   <div class="validate-input-container pb-3">
     <input
+      v-if="tag === 'input'"
+      type="text"
+      class="form-control"
+      :class="{ 'is-invalid': InputRef.error }"
+      :value="InputRef.val"
+      @input="updateValue"
+      @blur="validateInput"
+      v-bind="$attrs"
+    />
+
+    <textarea
+      v-else
       type="text"
       class="form-control"
       :class="{ 'is-invalid': InputRef.error }"
@@ -18,25 +30,10 @@
 
 <script setup lang="ts">
 // 导入事件监听器
-import { EmailRuleProps, IEmail } from "../types/userProps";
+import { RuleProps, IEmail } from "../types/userProps";
 import { PropType, toRefs, reactive, ref, watch, onMounted } from "vue";
 import emitter from "../utils/emitter";
 
-
-
-// type Events = {
-//   formItemCreated: string;
-//   callback?: boolean;
-// };
-
-//const emitter = mitt<any>();
-// import mitt from "mitt";
-
-// type Events = {
-//   formSubmit: string;
-//   callback?: Array<boolean>;
-// };
-// const emitter = mitt<Events>();
 
 //邮箱正则表达式
 const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
@@ -44,11 +41,17 @@ const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 //密码正则表达式至少六个字符，至少一个字母和一个数字
 const passwrodReg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
-type EmailProps = EmailRuleProps[];
+type EmailProps = RuleProps[];
 
-const emailProps = defineProps({
+type TagType = "input" | "textarea";
+
+const props = defineProps({
   rules: {
     type: Array as PropType<EmailProps>,
+  },
+  tag: {
+    type: String as PropType<TagType>,
+    default: "input",
   },
   modelValue: {
     type: String,
@@ -56,15 +59,14 @@ const emailProps = defineProps({
 });
 
 const InputRef: IEmail = reactive({
-  val: emailProps.modelValue || "",
+  val: props.modelValue || "",
   error: false,
   message: "",
 });
 
-
 const validateInput = () => {
-  if (emailProps.rules) {
-    const allPassed = emailProps.rules.every((rule) => {
+  if (props.rules) {
+    const allPassed = props.rules.every((rule) => {
       let passed = null; //临时变量
       InputRef.message = rule.message; //把错误消息重赋值
       switch (rule.type) {
@@ -87,7 +89,7 @@ const validateInput = () => {
     InputRef.error = !allPassed;
     return allPassed;
   }
-  return true
+  return true;
 };
 
 const emit = defineEmits(["update:modelValue"]);
@@ -98,14 +100,14 @@ const updateValue = (e: Event) => {
   //赋值
   InputRef.val = targetValue;
 
-  console.log('InputRef.val=',InputRef.val)
+  console.log("InputRef.val=", InputRef.val);
 
   //发送事件
   emit("update:modelValue", targetValue);
 };
 
 onMounted(() => {
- emitter.emit('formcreatedItem',validateInput)
+  emitter.emit("formcreatedItem", validateInput);
 });
 </script>
 
