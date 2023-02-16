@@ -39,7 +39,7 @@
 import ValidateForm from "../../components/ValidateForm.vue";
 import ValidateInput from "../../components/ValidateInput.vue";
 import GlobalHead from "../../components/GlobalUserProps.vue";
-import { RuleProps, IUserProps } from "../../types/userProps";
+import { RuleProps, UserProps } from "../../types/globalDatas";
 import { computed, ref, reactive, toRefs } from "vue";
 import store from "../../store";
 
@@ -59,7 +59,7 @@ const contentRules: RuleProps[] = [
 ];
 const contentVal = ref("");
 
-const UserProps: IUserProps = reactive({
+const UserProps: UserProps = reactive({
   isLogin: store.state.user.isLogin,
   userName: store.state.user.userName,
   userID: store.state.user.userID,

@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 // 导入事件监听器
-import { RuleProps, IEmail } from "../types/userProps";
+import { RuleProps,Base } from "../types/globalDatas";
 import { PropType, toRefs, reactive, ref, watch, onMounted } from "vue";
 import emitter from "../utils/emitter";
 
@@ -58,7 +58,7 @@ const props = defineProps({
   },
 });
 
-const InputRef: IEmail = reactive({
+const InputRef: Base = reactive({
   val: props.modelValue || "",
   error: false,
   message: "",
