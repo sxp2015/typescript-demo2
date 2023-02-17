@@ -6,17 +6,22 @@ const store = createStore<GlobalDataProps>({
   state: {
     columns: testData,
     posts: testPost,
-    user: { isLogin: false },
+    user: { isLogin: false, userName: "UserAccount", columnId: 2 },
   },
   mutations: {
-    login(state) {
+    login(state, isLogin) {
       //拿出并解构仓库数据，重新赋值
       state.user = {
         ...state.user,
-        isLogin: true,
+        isLogin: isLogin,
         userName: "Sunny Sun",
         columnId: 1,
       };
+    },
+    createPosts(state, newPost) {
+      if (newPost) {
+        state.posts.push(newPost);
+      }
     },
   },
   getters: {

@@ -100,7 +100,7 @@ const updateValue = (e: Event) => {
   //赋值
   InputRef.val = targetValue;
 
-  console.log("InputRef.val=", InputRef.val);
+  //console.log("InputRef.val=", InputRef.val);
 
   //发送事件
   emit("update:modelValue", targetValue);

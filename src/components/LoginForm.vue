@@ -73,7 +73,7 @@ const passwordRules: PasswordRuleProps[] = [
 const onFormSubmit = (result: boolean) => {
   if (result) {
     router.push("/");
-    store.commit("login");
+    store.commit("login",true);
   }
   // console.log('inputRef...',inputRef.value)
   // console.log("onFormSubmit...父组件收到的内容是：", result)

@@ -36,12 +36,15 @@
 </template>
 
 <script setup lang="ts">
+
+
 import ValidateForm from "../../components/ValidateForm.vue";
 import ValidateInput from "../../components/ValidateInput.vue";
 import GlobalHead from "../../components/GlobalUserProps.vue";
-import { RuleProps, UserProps } from "../../types/globalDatas";
+import { RuleProps, UserProps, PostProps } from "../../types/globalDatas";
 import { computed, ref, reactive, toRefs } from "vue";
 import store from "../../store";
+import router from "../../router";
 
 const titleRules: RuleProps[] = [
   {
@@ -65,7 +68,22 @@ const UserProps: UserProps = reactive({
   userID: store.state.user.userID,
 });
 const userPropsRef = toRefs(UserProps);
-const onFormSubmit = () => {};
+const onFormSubmit = (result: boolean) => {
+  if (result) {
+    const { columnId } = store.state.user;
+    if (columnId) {
+      const newPost: PostProps = {
+        id: new Date().getTime(),
+        title: titleVal.value,
+        content: contentVal.value,
+        columnId: columnId,
+        createdAt: new Date().toLocaleString(),
+      };
+      store.commit('createPosts', newPost)
+      router.push({name:'columnDetail',params:{id:columnId}})
+    }
+  }
+};
 </script>
 
 <style scoped>

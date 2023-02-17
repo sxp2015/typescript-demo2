@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-
+import store from "../store";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,6 +10,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/login",
     name: "login",
+    meta: { redirectAlreadyLogin: true },
     component: () => import("@/views/login/Index.vue"),
   },
   {
@@ -18,15 +19,17 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/artics/Index.vue"),
   },
   {
-    path: "/create",
-    name: "create",
-    component: () => import("@/views/artics/create.vue"),
-  },
-  {
     path: "/column/:id",
     name: "columnDetail",
     component: () => import("@/components/ColumnDetail.vue"),
   },
+  {
+    path: "/create",
+    name: "create",
+    meta: { requiredAuth: true },
+    component: () => import("@/views/artics/create.vue"),
+  },
+
   {
     path: "/test",
     name: "test",
@@ -54,4 +57,17 @@ const router = createRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  //可以进首页，想要发布文章，必须跳到登陆页面
+  if (to.meta.requiredAuth && !store.state.user.isLogin) {
+    //console.log("meta.==", to.meta);
+    next({ name: "login" });
+    //已经登陆，还想跳登陆页面的处理逻辑
+  } else if (to.meta.redirectAlreadyLogin && store.state.user.isLogin) {
+    next({ name: "home" });
+    //其他情况，放行
+  } else {
+    next();
+  }
+});
 export default router;

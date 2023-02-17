@@ -34,8 +34,9 @@
 
 <script setup lang="ts">
 import { UserProps } from "../types/globalDatas";
-import { PropType, ref } from "vue";
+import { PropType, ref,computed } from "vue";
 import DropDown from "./DropDown.vue";
+
 
 const userProps = defineProps({
   user: {
@@ -45,6 +46,8 @@ const userProps = defineProps({
 });
 
 const title = `你好 ${userProps.user.userName}`;
+
+
 </script>
 
 <style scoped>
